@@ -1,0 +1,24 @@
+
+
+body {
+    background-color: palevioletred;
+}
+
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
+h2, h3, h4, h5 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: lightseagreen;
+}
+
+#jumbotron {
+  background-image: url("../images/how-to-act-like-a-Disney-Princess.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
