@@ -1,7 +1,7 @@
 
 
 // Make an object for values
-var ninetySeconds = 90;
+var seconds = 5;
 var questionsArray = [
     { question: "How old was Snow White?", choices: [20, 14, 16], correctAnswer: 14 },
     { question: "Which Princess has dimples?", choices: ["Cinderella", "Jasmine", "Tiana"], correctAnswer: "Tiana" },
@@ -14,26 +14,34 @@ var questionsArray = [
     { question: "Which was the last Disney Princess made with Walt?", choices: ["Snow White", "Aurora", "Cinderella"], correctAnswer: "Aurora" },
     { question: "How many engineers and artists did it take to make Merida's hair?", choices: [4, 6, 10], correctAnswer: 6 }
 ]
+ 
+ let correctResponse = 0;
+ let wrongResponse = 0;
+
 
 // Start button 
 //Timer 
-function tenMinutes() {
-    ninetySeconds--;
-    $("#timer").html(ninetySeconds); 
-    if (ninetySeconds === 0) {
-        console.log("10 mins!");
-        clearInterval(ninetySeconds);
+function twoMinutes() {
+    seconds--;
+    $("#timer").html(seconds); 
+    if (seconds === 0) {
+        console.log("10 mins!"); 
+        checkAnswer();
         gameComplete();
     }
 }
 
 $("#startButton").click(function () {
-    setInterval(tenMinutes, 1000);
+    let timer = setInterval(twoMinutes, 1000);
+
     startGame();
 })
 
-$("#endGame").click(function () {
+$("#submitButton").click(function () {
     console.log("Hey");
+    checkAnswer();
+    gameComplete();
+
 })
 
 // put the questions on the screen 
@@ -45,7 +53,6 @@ function startGame() {
         $('.card-title' + i).append('<h5>' + questionsArray[i].question + '</h5>');
         for (var j = 0; j < questionsArray[i].choices.length; j++) {
             console.log(questionsArray[i].choices[j]);
-           // $('.card-text' + i).append("<p>" + questionsArray[i].choices[j] + "</p>");
            let radioButton = `<input type=radio name=question-${i} value= ${questionsArray[i].choices[j]}> ${questionsArray[i].choices[j]}</input>`  
            $('.card-text' + i).append(`<div> ${radioButton} </div>`);
       
@@ -57,24 +64,35 @@ function startGame() {
 
 function gameComplete() {
     console.log("it worked");
-    setTimeout(stop);
+    clearInterval(timer);
+    console.log(timer);
     checkAnswer();
+    gameResults();
+    location.reload();
+    
 }
 
 function checkAnswer() {
     for (var i = 0; i < questionsArray.length; i++) {
     var userChoice = $(`input[name="question-${i}"]:checked`).text;
         console.log(userChoice);
-        userChoice === questionsArray[i].correctAnswer;
-        if(userChoice === questionsArray[i].correctAnswer) {
+        userChoice == questionsArray[i].correctAnswer;
+        if(userChoice == questionsArray[i].correctAnswer) {
+            correctResponse++;
+            console.log(correctResponse);
             alert("You won!");
         }
         else {
-            alert("You lost");
+           wrongResponse++;
+           console.log(wrongResponse);
         }
     }
 }
 
+function gameResults() {
+
+
+}
 
 // onclick function for the choices
 
