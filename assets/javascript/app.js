@@ -43,7 +43,8 @@ function startGame() {
         for (var j = 0; j < questionsArray[i].choices.length; j++) {
             console.log(questionsArray[i].choices[j]);
            // $('.card-text' + i).append("<p>" + questionsArray[i].choices[j] + "</p>");
-       $('.card-text' + i).append("<input type='radio' name='question' value= 'choices'> " + questionsArray[i].choices[j] + " </input>");
+           let radioButton = `<input type=radio name=question-${i} value= ${questionsArray[i].choices[j]}> ${questionsArray[i].choices[j]}</input>`  
+           $('.card-text' + i).append(`<div> ${radioButton} </div>`);
       
  
      }
@@ -53,6 +54,7 @@ function startGame() {
 
 function gameComplete() {
     console.log("it worked");
+    setInterval(stop);
 }
 
 // onclick function for the choices
