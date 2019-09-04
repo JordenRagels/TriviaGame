@@ -19,9 +19,10 @@ var questionsArray = [
 //Timer 
 function tenMinutes() {
     ninetySeconds--;
-    $("#timer").html(ninetySeconds);
-    console.log("10 mins!");
+    $("#timer").html(ninetySeconds); 
     if (ninetySeconds === 0) {
+        console.log("10 mins!");
+        clearInterval(ninetySeconds);
         gameComplete();
     }
 }
@@ -31,7 +32,9 @@ $("#startButton").click(function () {
     startGame();
 })
 
-
+$("#endGame").click(function () {
+    console.log("Hey");
+})
 
 // put the questions on the screen 
 
@@ -54,8 +57,24 @@ function startGame() {
 
 function gameComplete() {
     console.log("it worked");
-    setInterval(stop);
+    setTimeout(stop);
+    checkAnswer();
 }
+
+function checkAnswer() {
+    for (var i = 0; i < questionsArray.length; i++) {
+    var userChoice = $(`input[name="question-${i}"]:checked`).text;
+        console.log(userChoice);
+        userChoice === questionsArray[i].correctAnswer;
+        if(userChoice === questionsArray[i].correctAnswer) {
+            alert("You won!");
+        }
+        else {
+            alert("You lost");
+        }
+    }
+}
+
 
 // onclick function for the choices
 
