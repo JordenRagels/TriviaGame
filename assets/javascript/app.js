@@ -1,7 +1,7 @@
 
 
 // Make an object for values
-var seconds = 5;
+var seconds = 120;
 var questionsArray = [
     { question: "How old was Snow White?", choices: [20, 14, 16], correctAnswer: 14 },
     { question: "Which Princess has dimples?", choices: ["Cinderella", "Jasmine", "Tiana"], correctAnswer: "Tiana" },
@@ -26,7 +26,6 @@ function twoMinutes() {
     $("#timer").html(seconds); 
     if (seconds === 0) {
         console.log("10 mins!"); 
-        checkAnswer();
         gameComplete();
     }
 }
@@ -38,7 +37,6 @@ $("#startButton").click(function () {
 
 $("#submitButton").click(function () {
     console.log("Hey");
-    checkAnswer();
     gameComplete();
 
 })
@@ -66,8 +64,6 @@ function gameComplete() {
     clearInterval(timer);
     console.log(timer);
     checkAnswer();
-    gameResults();
-    
     
 }
 
@@ -79,7 +75,7 @@ function checkAnswer() {
         if(userChoice == questionsArray[i].correctAnswer) {
             correctResponse++;
             console.log(correctResponse);
-            alert("You won!");
+            
         }
         else {
            wrongResponse++;
@@ -87,13 +83,18 @@ function checkAnswer() {
         }
     }
     clearInterval(timer);
+    gameResults();
 }
 
 function gameResults() {
-
-
-//location.reload();
+   $("#correctResponse").append(correctResponse);
+   $("#wrongResponse").append(wrongResponse);
+    
 }
+
+$("#resetButton").click(function (){
+    location.reload();
+})
 
 // onclick function for the choices
 
