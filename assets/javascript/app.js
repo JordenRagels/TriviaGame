@@ -33,7 +33,6 @@ function twoMinutes() {
 
 $("#startButton").click(function () {
     timer = setInterval(twoMinutes, 1000);
-
     startGame();
 })
 
@@ -74,9 +73,9 @@ function gameComplete() {
 
 function checkAnswer() {
     for (var i = 0; i < questionsArray.length; i++) {
-    var userChoice = $(`input[name="question-${i}"]:checked`).text;
-        console.log(userChoice);
-        //userChoice == questionsArray[i].correctAnswer;
+    var userChoice = $(`input[name="question-${i}"]:checked`).val();
+       console.log(userChoice);
+        userChoice == questionsArray[i].correctAnswer;
         if(userChoice == questionsArray[i].correctAnswer) {
             correctResponse++;
             console.log(correctResponse);
