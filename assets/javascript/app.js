@@ -14,7 +14,7 @@ var questionsArray = [
     { question: "Which was the last Disney Princess made with Walt?", choices: ["Snow White", "Aurora", "Cinderella"], correctAnswer: "Aurora" },
     { question: "How many engineers and artists did it take to make Merida's hair?", choices: [4, 6, 10], correctAnswer: 6 }
 ]
- 
+ let timer;
  let correctResponse = 0;
  let wrongResponse = 0;
 
@@ -32,7 +32,7 @@ function twoMinutes() {
 }
 
 $("#startButton").click(function () {
-    let timer = setInterval(twoMinutes, 1000);
+    timer = setInterval(twoMinutes, 1000);
 
     startGame();
 })
@@ -68,7 +68,7 @@ function gameComplete() {
     console.log(timer);
     checkAnswer();
     gameResults();
-    location.reload();
+    
     
 }
 
@@ -76,7 +76,7 @@ function checkAnswer() {
     for (var i = 0; i < questionsArray.length; i++) {
     var userChoice = $(`input[name="question-${i}"]:checked`).text;
         console.log(userChoice);
-        userChoice == questionsArray[i].correctAnswer;
+        //userChoice == questionsArray[i].correctAnswer;
         if(userChoice == questionsArray[i].correctAnswer) {
             correctResponse++;
             console.log(correctResponse);
@@ -87,11 +87,13 @@ function checkAnswer() {
            console.log(wrongResponse);
         }
     }
+    clearInterval(timer);
 }
 
 function gameResults() {
 
 
+//location.reload();
 }
 
 // onclick function for the choices
